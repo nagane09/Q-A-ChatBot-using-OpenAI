@@ -1,6 +1,5 @@
 import streamlit as st
-import openai
-from langchain_openai import ChatOpenAI
+from langchain_community.llms import Ollama
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -11,7 +10,7 @@ load_dotenv()
 
 os.environ['LANGCHAIN_API_KEY']=os.getenv("LANGCHAIN_API_KEY")
 os.environ['LANGCHAIN_TRACKING_V2']='true'
-os.environ['LANGCHAIN_PROJECT']="Q&A ChatBot with OpenAI"
+os.environ['LANGCHAIN_PROJECT']="Q&A ChatBot with Ollama"
 
 prompt=ChatPromptTemplate.from_messages(
     [
@@ -20,9 +19,8 @@ prompt=ChatPromptTemplate.from_messages(
     ]
 )
 
-def generate_response(question,api_key,llm,temperature,max_tokens):
-    openai.api_key=api_key
-    llm=ChatOpenAI(model=llm)
+def generate_response(question,engine,temperature,max_tokens):
+    llm=Ollama(model=llm)
     output_parser=StrOutputParser()
     chain=prompt|llm
     answer=chain.invoke({'question':question})
@@ -34,7 +32,7 @@ st.sidebar.title("Settings")
 api_key=st.sidebar.text_input("Enter your OpenAI API key: ",type="password")
 
 
-llm=st.sidebar.selectbox("Select the OpenAI Model",["GPT-5","GPT-5 mini","GPT-5 nano"])
+llm=st.sidebar.selectbox("Select the OpenAI Model",["mistral","gemma2"])
 
 temperature=st.sidebar.slider("Temperature",min_value=0.0,max_value=1.0,value=0.7)
 max_tokens=st.sidebar.slider("Max Tokens",min_value=50,max_value=300,value=150)
