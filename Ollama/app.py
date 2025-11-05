@@ -27,7 +27,7 @@ def generate_response(question,engine,temperature,max_tokens):
     return answer
 
 ##Title:-
-st.title("Enchances Q&A ChatBot with OpenAI")
+st.title("Enchances Q&A ChatBot with Ollama")
 st.sidebar.title("Settings")
 
 
