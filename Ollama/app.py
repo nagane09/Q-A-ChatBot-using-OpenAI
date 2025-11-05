@@ -32,7 +32,7 @@ st.sidebar.title("Settings")
 api_key=st.sidebar.text_input("Enter your OpenAI API key: ",type="password")
 
 
-llm=st.sidebar.selectbox("Select the OpenAI Model",["mistral","gemma2"])
+llm=st.sidebar.selectbox("Select the OpenAI Model",["gemma3","qwen2:1.5b"])
 
 temperature=st.sidebar.slider("Temperature",min_value=0.0,max_value=1.0,value=0.7)
 max_tokens=st.sidebar.slider("Max Tokens",min_value=50,max_value=300,value=150)
