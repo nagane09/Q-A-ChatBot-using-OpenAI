@@ -29,7 +29,6 @@ def generate_response(question,engine,temperature,max_tokens):
 ##Title:-
 st.title("Enchances Q&A ChatBot with OpenAI")
 st.sidebar.title("Settings")
-api_key=st.sidebar.text_input("Enter your OpenAI API key: ",type="password")
 
 
 llm=st.sidebar.selectbox("Select the OpenAI Model",["gemma3","qwen2:1.5b"])
